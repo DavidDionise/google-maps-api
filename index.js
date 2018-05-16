@@ -64,7 +64,7 @@ function resolve( onOk, onErr, onComplete, err ) {
  * })
  * ```
  */
-module.exports = function( apikey, libraries, onComplete ) {
+module.exports = function( apikey, version, libraries, onComplete ) {
 
   key = apikey || key;
   if (typeof libraries == 'function') {
@@ -100,7 +100,7 @@ module.exports = function( apikey, libraries, onComplete ) {
               }).join('&');
             }
 
-            var url = 'https://maps.googleapis.com/maps/api/js?v=3&callback=$$mapsCB' + auth;
+            var url = `https://maps.googleapis.com/maps/api/js?v=${version || 3}&callback=$$mapsCB${auth}`;
             if (Array.isArray(libraries) && libraries.length > 0) {
               url+='&libraries='+libraries.join(',');
             }
