@@ -100,7 +100,13 @@ module.exports = function( apikey, version, libraries, onComplete ) {
               }).join('&');
             }
 
-            var url = `https://maps.googleapis.com/maps/api/js?v=${version || 3}&callback=$$mapsCB${auth}`;
+            if(version) {
+              var url = 'https://maps.googleapis.com/maps/api/js?v=' + version + '&callback=$$mapsCB' + auth;
+            }
+            else {
+              var url = 'https://maps.googleapis.com/maps/api/js?v=3&callback=$$mapsCB' + auth;
+            }
+            
             if (Array.isArray(libraries) && libraries.length > 0) {
               url+='&libraries='+libraries.join(',');
             }
